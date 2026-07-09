@@ -2,6 +2,7 @@ import { baseProfile } from "./base";
 import { quickLinks } from "./navigation";
 import { about, experience, education, aptitudes, techSkills } from "./about";
 import { projects } from "./projects";
+import { services } from "./services";
 
 export const profile = {
   ...baseProfile,
@@ -12,4 +13,5 @@ export const profile = {
   aptitudes,
   techSkills,
   projects,
+  services,
 };
