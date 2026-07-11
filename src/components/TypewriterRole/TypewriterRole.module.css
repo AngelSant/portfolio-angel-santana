@@ -1,0 +1,35 @@
+.typewriter {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    color: var(--foreground);
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+  
+  .cursor {
+    margin-left: 3px;
+    color: var(--foreground);
+    font-weight: 400;
+    animation: cursorBlink 800ms steps(1) infinite;
+  }
+  
+  @keyframes cursorBlink {
+    0%,
+    45% {
+      opacity: 1;
+    }
+  
+    46%,
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .cursor {
+      animation: none;
+    }
+  }

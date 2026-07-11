@@ -1,7 +1,11 @@
+import { TechnologyGrid } from "@/components/TechnologyGrid/TechnologyGrid";
 import { profile } from "@/data/portfolio";
 import styles from "./page.module.css";
 
 export default function SobreMiPage() {
+  const firstName = profile.fullName.split(" ")[0];
+  const remainingName = profile.fullName.split(" ").slice(1).join(" ");
+
   return (
     <section className={styles.aboutPage}>
       <div className={styles.aboutHero}>
@@ -11,9 +15,10 @@ export default function SobreMiPage() {
 
         <div className={styles.aboutIntro}>
           <p className="eyebrow">Sobre mí</p>
+
           <h1>
-            {profile.fullName.split(" ")[0]}{" "}
-            <span>{profile.fullName.split(" ").slice(1).join(" ")}</span>
+            {firstName}{" "}
+            <span className="animatedGradientText">{remainingName}</span>
           </h1>
 
           <h2>{profile.degree}</h2>
@@ -22,6 +27,7 @@ export default function SobreMiPage() {
           <p className={styles.aboutText}>
             {profile.about.professionalProfile}
           </p>
+
           <p className={styles.aboutText}>{profile.about.value}</p>
         </div>
       </div>
@@ -56,6 +62,7 @@ export default function SobreMiPage() {
         <aside className={styles.aboutSide}>
           <article className={styles.aboutCard}>
             <p className={styles.sectionLabel}>Educación</p>
+
             {profile.education.map((item) => (
               <div key={item.institution}>
                 <h3>{item.degree}</h3>
@@ -67,6 +74,7 @@ export default function SobreMiPage() {
 
           <article className={styles.aboutCard}>
             <p className={styles.sectionLabel}>Aptitudes</p>
+
             <div className="chipList">
               {profile.aptitudes.map((item) => (
                 <span className="chip" key={item}>
@@ -82,6 +90,7 @@ export default function SobreMiPage() {
         <div className={styles.skillsHeader}>
           <p className="eyebrow">Stack técnico</p>
           <h2>Lenguajes, frameworks y herramientas</h2>
+
           <p>
             Tecnologías que he utilizado en proyectos móviles, web, backend,
             cloud, bases de datos y flujos de desarrollo.
@@ -92,14 +101,7 @@ export default function SobreMiPage() {
           {profile.techSkills.map((group) => (
             <article className={styles.skillCard} key={group.category}>
               <h3>{group.category}</h3>
-
-              <div className="chipList">
-                {group.items.map((item) => (
-                  <span className="chip" key={item}>
-                    {item}
-                  </span>
-                ))}
-              </div>
+              <TechnologyGrid items={group.items} />
             </article>
           ))}
         </div>

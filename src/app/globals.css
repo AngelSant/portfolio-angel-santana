@@ -47,6 +47,15 @@
   --radius-lg: 32px;
   --radius-md: 22px;
   --radius-sm: 999px;
+
+  --animated-title-gradient: linear-gradient(
+    90deg,
+    #0a0a0a 0%,
+    #5a5a5a 22%,
+    #f4f4f4 48%,
+    #858585 72%,
+    #0a0a0a 100%
+  );
 }
 
 :root[data-theme="dark"] {
@@ -94,6 +103,15 @@
 
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
   --card-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+
+  --animated-title-gradient: linear-gradient(
+    90deg,
+    #f5f5f5 0%,
+    #a3a3a3 22%,
+    #111111 48%,
+    #747474 72%,
+    #f5f5f5 100%
+  );
 }
 
 * {
@@ -190,6 +208,39 @@ svg {
   color: var(--foreground);
   font-size: 13px;
   font-weight: 700;
+}
+
+.animatedGradientText {
+  display: inline-block;
+  color: transparent;
+  background-image: var(--animated-title-gradient);
+  background-size: 260% 100%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animatedTitleGradient 6s ease-in-out infinite;
+}
+
+@keyframes animatedTitleGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animatedGradientText {
+    animation: none;
+    background-position: 50% 50%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

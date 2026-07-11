@@ -33,8 +33,9 @@
   
   .aboutIntro h1 {
     margin: 0;
+    overflow: visible;
     font-size: clamp(44px, 6vw, 72px);
-    line-height: 0.95;
+    line-height: 1.02;
     letter-spacing: -0.06em;
   }
   
@@ -43,7 +44,7 @@
   }
   
   .aboutIntro h2 {
-    margin: 24px 0 10px;
+    margin: 32px 0 10px;
     font-size: clamp(24px, 3vw, 34px);
     letter-spacing: -0.04em;
   }

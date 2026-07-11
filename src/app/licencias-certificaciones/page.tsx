@@ -1,4 +1,7 @@
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import { profile } from "@/data/portfolio";
+import { assetPath } from "@/lib/assetPath";
 import styles from "./page.module.css";
 
 export default function LicenciasCertificacionesPage() {
@@ -10,9 +13,9 @@ export default function LicenciasCertificacionesPage() {
         <h1>Formación continua y validación técnica</h1>
 
         <p>
-          Espacio dedicado a certificaciones, licencias, cursos y constancias
-          que respaldan mi formación profesional, aprendizaje continuo y
-          especialización en distintas áreas del desarrollo de software.
+          Certificaciones, insignias y rutas de aprendizaje que respaldan mi
+          formación en desarrollo de software, inteligencia artificial, cloud,
+          bases de datos, Python y diseño de experiencia de usuario.
         </p>
       </div>
 
@@ -20,9 +23,15 @@ export default function LicenciasCertificacionesPage() {
         {profile.certifications.map((certification) => (
           <article
             className={styles.certificationCard}
-            key={certification.title}>
+            key={`${certification.issuer}-${certification.title}`}>
             <div className={styles.certificateImage}>
-              <span>{certification.imageLabel}</span>
+              <Image
+                src={assetPath(certification.image)}
+                alt={certification.imageAlt}
+                width={1200}
+                height={800}
+                className={styles.certificatePreview}
+              />
             </div>
 
             <div className={styles.certificateContent}>
@@ -48,19 +57,14 @@ export default function LicenciasCertificacionesPage() {
               </div>
 
               <div className={styles.certificateActions}>
-                {certification.credentialUrl ? (
-                  <a
-                    href={certification.credentialUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.primaryButton}>
-                    Ver credencial
-                  </a>
-                ) : (
-                  <span className={styles.disabledButton}>
-                    Enlace pendiente
-                  </span>
-                )}
+                <a
+                  href={certification.credentialUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.primaryButton}>
+                  <span>Ver credencial</span>
+                  <ExternalLink size={16} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </article>
@@ -73,10 +77,9 @@ export default function LicenciasCertificacionesPage() {
         <h2>Me mantengo en constante actualización</h2>
 
         <p>
-          Además de mi experiencia práctica en proyectos reales, sigo
-          fortaleciendo mis conocimientos en desarrollo móvil, frontend,
-          backend, cloud, arquitectura de software, UX/UI, ciberseguridad e
-          inteligencia artificial aplicada.
+          Complemento mi experiencia práctica con formación en inteligencia
+          artificial, desarrollo con Python, cloud computing, bases de datos,
+          diseño UX, redes y construcción de soluciones digitales.
         </p>
       </section>
     </section>

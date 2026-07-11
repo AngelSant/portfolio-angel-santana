@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TypewriterRole } from "@/components/TypewriterRole/TypewriterRole";
 import { profile } from "@/data/portfolio";
 import styles from "./page.module.css";
 
@@ -9,12 +10,13 @@ export default function HomePage() {
         <p className="eyebrow">Portafolio profesional</p>
 
         <h1>
-          Hola, soy <span>{profile.shortName}</span>
+          Hola, soy{" "}
+          <span className="animatedGradientText">{profile.shortName}</span>
         </h1>
 
         <h2>{profile.degree}</h2>
 
-        <p className="role">{profile.role}</p>
+        <TypewriterRole roles={profile.roles} />
 
         <p className={styles.heroDescription}>
           Desarrollo aplicaciones móviles, plataformas web y soluciones

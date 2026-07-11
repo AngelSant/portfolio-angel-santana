@@ -1,8 +1,13 @@
+const professionalRoles = ["Mobile App Developer", "Full-Stack Developer"];
+
 export const baseProfile = {
   shortName: "Angel Santana",
   fullName: "Angel Moises Islas Santana",
   degree: "Ingeniero en Software",
-  role: "Mobile App Developer | Full-Stack Developer",
+
+  roles: professionalRoles,
+  role: professionalRoles.join(" | "),
+
   email: "angel.santana7801@gmail.com",
   whatsapp: "https://wa.me/5217714054687",
   location: "México",

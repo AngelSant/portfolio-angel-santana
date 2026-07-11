@@ -10,17 +10,26 @@
   
   .heroContent h1 {
     margin: 0;
+    padding-bottom: 0.1em;
+    overflow: visible;
     font-size: clamp(48px, 7vw, 86px);
-    line-height: 0.95;
+    line-height: 1.05;
     letter-spacing: -0.06em;
   }
   
   .heroContent h1 span {
     color: var(--soft-muted);
   }
+
+  .heroContent h1 :global(.animatedGradientText) {
+    display: inline-block;
+    padding-bottom: 0.08em;
+    overflow: visible;
+    line-height: 1.08;
+  }
   
   .heroContent h2 {
-    margin: 24px 0 10px;
+    margin: 32px 0 10px;
     font-size: clamp(24px, 3vw, 38px);
     letter-spacing: -0.04em;
   }

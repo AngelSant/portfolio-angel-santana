@@ -1,3 +1,5 @@
+import { ExternalLink } from "lucide-react";
+import { ProjectGallery } from "@/components/ProjectGallery/ProjectGallery";
 import { profile } from "@/data/portfolio";
 import styles from "./page.module.css";
 
@@ -7,6 +9,7 @@ export default function ProyectosPage() {
       <div className={styles.pageHeader}>
         <p className="eyebrow">Proyectos</p>
         <h1>Soluciones que he desarrollado</h1>
+
         <p>
           Una selección de proyectos profesionales, institucionales e
           independientes donde he participado en desarrollo móvil, frontend,
@@ -17,9 +20,10 @@ export default function ProyectosPage() {
       <div className={styles.projectsGrid}>
         {profile.projects.map((project) => (
           <article className={styles.projectCard} key={project.title}>
-            <div className={styles.projectImage}>
-              <span>{project.imageLabel}</span>
-            </div>
+            <ProjectGallery
+              projectTitle={project.title}
+              images={project.images}
+            />
 
             <div className={styles.projectContent}>
               <div className={styles.projectMeta}>
@@ -32,6 +36,7 @@ export default function ProyectosPage() {
 
               <div className={styles.projectHighlights}>
                 <h3>Aspectos destacados</h3>
+
                 <ul>
                   {project.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
@@ -40,40 +45,32 @@ export default function ProyectosPage() {
               </div>
 
               <div className={styles.projectStack}>
-                {project.stack.map((tech) => (
-                  <span className="chip" key={tech}>
-                    {tech}
+                {project.stack.map((technology) => (
+                  <span className="chip" key={technology}>
+                    {technology}
                   </span>
                 ))}
               </div>
 
               <div className={styles.projectActions}>
-                {project.siteUrl ? (
-                  <a
-                    href={project.siteUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.primaryButton}>
-                    Ver proyecto
-                  </a>
+                {project.comingSoon ? (
+                  <span className={styles.comingSoon}>Próximamente</span>
                 ) : (
-                  <span className={styles.disabledButton}>
-                    Vista no disponible
-                  </span>
-                )}
-
-                {project.repoUrl ? (
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.secondaryButton}>
-                    Ver código
-                  </a>
-                ) : (
-                  <span className={styles.disabledButton}>
-                    Repositorio privado
-                  </span>
+                  project.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.siteButton}>
+                      <span>{link.label}</span>
+                      <ExternalLink
+                        className={styles.buttonIcon}
+                        size={16}
+                        aria-hidden="true"
+                      />
+                    </a>
+                  ))
                 )}
               </div>
             </div>

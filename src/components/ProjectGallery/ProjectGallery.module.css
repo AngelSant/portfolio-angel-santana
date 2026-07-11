@@ -1,0 +1,322 @@
+.gallery {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--placeholder-end);
+  }
+  
+  .galleryImage {
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+  
+  .gallery:hover .galleryImage {
+    transform: scale(1.025);
+  }
+  
+  .viewButton {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition:
+      transform 200ms ease,
+      background-color 200ms ease;
+  }
+  
+  .viewButton:hover {
+    transform: translateY(-2px) scale(1.04);
+    background: rgba(0, 0, 0, 0.92);
+  }
+  
+  .viewButton:focus-visible,
+  .navigationButton:focus-visible,
+  .indicator:focus-visible,
+  .closeButton:focus-visible,
+  .modalNavigation:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 3px;
+  }
+  
+  .navigationButton,
+  .modalNavigation {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition:
+      transform 200ms ease,
+      background-color 200ms ease;
+  }
+  
+  .navigationButton {
+    position: absolute;
+    top: 50%;
+    width: 42px;
+    height: 42px;
+    transform: translateY(-50%);
+  }
+  
+  .navigationButton:hover {
+    background: rgba(0, 0, 0, 0.94);
+  }
+  
+  .previousButton {
+    left: 16px;
+  }
+  
+  .nextButton {
+    right: 16px;
+  }
+  
+  .indicators {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    transform: translateX(-50%);
+  }
+  
+  .indicator {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition:
+      width 200ms ease,
+      background-color 200ms ease;
+  }
+  
+  .activeIndicator {
+    width: 26px;
+    background: #ffffff;
+  }
+  
+  /* Modal renderizado mediante portal en document.body */
+  
+  .modalBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(14px);
+    animation: backdropIn 220ms ease both;
+  }
+  
+  .modal {
+    position: relative;
+    width: min(1440px, calc(100vw - 32px));
+    height: min(92vh, 960px);
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 26px;
+    background: #101011;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.58);
+    animation: modalIn 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  
+  .modalImageFrame {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 17px;
+    background: #070708;
+  }
+  
+  .modalImage {
+    object-fit: contain;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    z-index: 3;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.76);
+    cursor: pointer;
+    transition:
+      transform 200ms ease,
+      background-color 200ms ease;
+  }
+  
+  .closeButton:hover {
+    transform: rotate(6deg) scale(1.04);
+    background: rgba(0, 0, 0, 0.96);
+  }
+  
+  .modalNavigation {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translateY(-50%);
+  }
+  
+  .modalNavigation:hover {
+    background: rgba(0, 0, 0, 0.96);
+  }
+  
+  .modalPrevious {
+    left: 32px;
+  }
+  
+  .modalNext {
+    right: 32px;
+  }
+  
+  .modalCounter {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    min-width: 64px;
+    padding: 9px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+  
+  @keyframes backdropIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes modalIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .gallery {
+      aspect-ratio: 4 / 3;
+    }
+  
+    .viewButton {
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+    }
+  
+    .navigationButton {
+      width: 38px;
+      height: 38px;
+    }
+  
+    .previousButton {
+      left: 12px;
+    }
+  
+    .nextButton {
+      right: 12px;
+    }
+  
+    .modalBackdrop {
+      padding: 8px;
+    }
+  
+    .modal {
+      width: calc(100vw - 16px);
+      height: calc(100dvh - 16px);
+      padding: 8px;
+      border-radius: 19px;
+    }
+  
+    .modalImageFrame {
+      border-radius: 13px;
+    }
+  
+    .closeButton {
+      top: 18px;
+      right: 18px;
+      width: 42px;
+      height: 42px;
+    }
+  
+    .modalNavigation {
+      width: 44px;
+      height: 44px;
+    }
+  
+    .modalPrevious {
+      left: 18px;
+    }
+  
+    .modalNext {
+      right: 18px;
+    }
+  
+    .modalCounter {
+      bottom: 22px;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .galleryImage,
+    .viewButton,
+    .navigationButton,
+    .closeButton,
+    .modalNavigation,
+    .indicator,
+    .modalBackdrop,
+    .modal {
+      animation-duration: 1ms;
+      transition-duration: 1ms;
+    }
+  }
