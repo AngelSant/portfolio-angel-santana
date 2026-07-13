@@ -268,3 +268,67 @@ export const certifications = [
       "https://www.skills.google/public_profiles/faa27bf9-add8-4e02-aec4-56fdfe4ba310/badges/9855463?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share",
   },
 ];
+
+export const certificationSections = [
+  {
+    id: "artificial-intelligence-data",
+    icon: "ai",
+    title: "Inteligencia Artificial & Ciencia de Datos",
+    description:
+      "Formación relacionada con inteligencia artificial generativa, modelos de lenguaje, agentes, APIs de IA y manipulación de datos.",
+    certificationTitles: [
+      "Multi-Modal Systems with the OpenAI API",
+      "Building AI Agents with Google ADK",
+      "Data Manipulation with pandas",
+      "Developing AI Systems with the OpenAI API",
+      "Intermediate ChatGPT",
+      "Understanding Prompt Engineering",
+      "Introduction to ChatGPT",
+      "Understanding ChatGPT",
+      "Understanding Artificial Intelligence",
+    ],
+  },
+  {
+    id: "python-programming",
+    icon: "code",
+    title: "Python & Programación",
+    description:
+      "Cursos enfocados en programación con Python, APIs, orientación a objetos, algoritmos y estructuras de datos.",
+    certificationTitles: [
+      "Introduction to APIs in Python",
+      "Data Structures and Algorithms in Python",
+      "Object-Oriented Programming in Python",
+    ],
+  },
+  {
+    id: "cloud-networking",
+    icon: "cloud",
+    title: "Cloud & Networking",
+    description:
+      "Fundamentos de computación en la nube, infraestructura, redes, seguridad y servicios de AWS y Google Cloud.",
+    certificationTitles: [
+      "AWS Educate Introduction to Cloud 101",
+      "Google Cloud Computing Foundations: Cloud Computing Fundamentals",
+      "Google Cloud Computing Foundations: Infrastructure in Google Cloud",
+      "Google Cloud Computing Foundations: Networking & Security in Google Cloud",
+      "Google Cloud Computing Foundations: Data, ML, and AI in Google Cloud",
+      "Level 1: Cloud Networking",
+    ],
+  },
+  {
+    id: "databases",
+    icon: "database",
+    title: "Bases de Datos",
+    description:
+      "Rutas de aprendizaje orientadas al desarrollo de aplicaciones y persistencia de información con bases de datos.",
+    certificationTitles: ["MongoDB Python Developer Path"],
+  },
+  {
+    id: "web-ux",
+    icon: "ux",
+    title: "Desarrollo Web & UX",
+    description:
+      "Formación relacionada con experiencia de usuario, análisis de necesidades, diseño de interfaces y construcción de productos digitales.",
+    certificationTitles: ["Diseñador de experiencia de usuario (UX)"],
+  },
+] as const;

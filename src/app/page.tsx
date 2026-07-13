@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { TypewriterRole } from "@/components/TypewriterRole/TypewriterRole";
 import { profile } from "@/data/portfolio";
+import { assetPath } from "@/lib/assetPath";
 import styles from "./page.module.css";
 
 export default function HomePage() {
@@ -37,7 +39,14 @@ export default function HomePage() {
 
       <div className={styles.heroVisual}>
         <div className={styles.imagePlaceholder}>
-          <span>Imagen principal / ilustración / fotografía profesional</span>
+          <Image
+            src={assetPath("/images/home/FE1.jpeg")}
+            alt="Fotografía"
+            fill
+            priority
+            sizes="(max-width: 900px) min(100vw - 28px, 520px), 430px"
+            className={styles.heroPhoto}
+          />
         </div>
       </div>
 

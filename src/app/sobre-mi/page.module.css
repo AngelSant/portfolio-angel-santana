@@ -13,22 +13,23 @@
   }
   
   .aboutImage {
+    position: relative;
     min-height: 520px;
-    display: grid;
-    place-items: center;
-    padding: 36px;
-    text-align: center;
-    color: var(--soft-muted);
-    border: 1px dashed var(--placeholder-border);
+    overflow: hidden;
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background:
-      linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--foreground) 4%, transparent),
-        transparent
-      ),
-      var(--surface);
+    background: var(--surface);
     box-shadow: var(--shadow);
+  }
+  
+  .aboutPhoto {
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .aboutImage:hover .aboutPhoto {
+    transform: scale(1.025);
   }
   
   .aboutIntro h1 {

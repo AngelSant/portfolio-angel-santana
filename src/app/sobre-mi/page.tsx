@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { TechnologyGrid } from "@/components/TechnologyGrid/TechnologyGrid";
 import { profile } from "@/data/portfolio";
+import { assetPath } from "@/lib/assetPath";
 import styles from "./page.module.css";
 
 export default function SobreMiPage() {
@@ -10,7 +12,13 @@ export default function SobreMiPage() {
     <section className={styles.aboutPage}>
       <div className={styles.aboutHero}>
         <div className={styles.aboutImage}>
-          <span>Imagen personal / ilustración profesional</span>
+          <Image
+            src={assetPath("/images/about/FP1.png")}
+            alt="Fotografía"
+            fill
+            sizes="(max-width: 980px) min(100vw - 40px, 620px), 500px"
+            className={styles.aboutPhoto}
+          />
         </div>
 
         <div className={styles.aboutIntro}>

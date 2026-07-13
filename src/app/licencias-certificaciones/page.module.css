@@ -23,10 +23,142 @@
   line-height: 1.8;
 }
 
+/* Sections */
+
+.sectionsList {
+  display: grid;
+  gap: 20px;
+}
+
+.certificationSection {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.certificationSection[open] {
+  border-color: var(--hover-border);
+  box-shadow: var(--shadow);
+}
+
+.sectionSummary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 28px 30px;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 200ms ease;
+}
+
+.sectionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.sectionSummary::marker {
+  display: none;
+  content: "";
+}
+
+.sectionSummary:hover {
+  background: var(--surface-soft);
+}
+
+.sectionSummary:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -4px;
+}
+
+.sectionIcon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--primary-foreground);
+  background: var(--primary-background);
+}
+
+.sectionIcon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.sectionInformation {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sectionInformation strong {
+  color: var(--foreground);
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.sectionInformation > span {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sectionCount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--foreground);
+  background: var(--surface-muted);
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sectionCountLabel {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.sectionChevron {
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+  transition: transform 250ms ease;
+}
+
+.certificationSection[open] .sectionChevron {
+  transform: rotate(180deg);
+}
+
+.sectionContent {
+  padding: 0 28px 28px;
+  animation: sectionContentIn 300ms ease both;
+}
+
+.certificationSection[open] .sectionSummary {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+/* Certification cards */
+
 .certificationsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  gap: 24px;
+  padding-top: 28px;
 }
 
 .certificationCard {
@@ -45,7 +177,7 @@
 }
 
 .certificationCard:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: var(--hover-border);
   box-shadow: var(--shadow);
 }
@@ -74,7 +206,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 28px;
 }
 
 .certificateMeta {
@@ -107,7 +239,7 @@
 .certificateContent h2 {
   margin: 0 0 14px;
   overflow-wrap: anywhere;
-  font-size: clamp(25px, 2.7vw, 33px);
+  font-size: clamp(24px, 2.5vw, 31px);
   line-height: 1.05;
   letter-spacing: -0.05em;
 }
@@ -161,6 +293,8 @@
   outline-offset: 3px;
 }
 
+/* Learning */
+
 .learningSection {
   margin-top: 80px;
   padding: 56px;
@@ -193,13 +327,39 @@
   line-height: 1.8;
 }
 
+@keyframes sectionContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1020px) {
   .certificationsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 760px) {
+  .sectionSummary {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .sectionCount {
+    grid-column: 2;
+    width: fit-content;
+  }
+
+  .sectionChevron {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
   .certificationsGrid {
     grid-template-columns: 1fr;
   }
@@ -224,6 +384,38 @@
     font-size: 16px;
   }
 
+  .sectionSummary {
+    gap: 14px;
+    padding: 22px;
+  }
+
+  .sectionIcon {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+  }
+
+  .sectionIcon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .sectionInformation strong {
+    font-size: 20px;
+  }
+
+  .sectionInformation > span {
+    font-size: 13px;
+  }
+
+  .sectionContent {
+    padding: 0 18px 18px;
+  }
+
+  .certificationsGrid {
+    padding-top: 18px;
+  }
+
   .certificateContent,
   .learningSection {
     padding: 26px;
@@ -240,6 +432,24 @@
   }
 }
 
+@media (max-width: 460px) {
+  .sectionSummary {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .sectionInformation > span {
+    display: none;
+  }
+
+  .sectionCountLabel {
+    display: none;
+  }
+
+  .sectionCount {
+    padding: 7px 11px;
+  }
+}
+
 @media (max-width: 400px) {
   .certificateContent,
   .learningSection {
@@ -248,5 +458,13 @@
 
   .certificateContent h2 {
     font-size: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionContent,
+  .sectionChevron {
+    animation-duration: 1ms;
+    transition-duration: 1ms;
   }
 }

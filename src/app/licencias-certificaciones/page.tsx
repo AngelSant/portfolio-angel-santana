@@ -1,10 +1,34 @@
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import {
+  BrainCircuit,
+  ChevronDown,
+  CloudCog,
+  Code2,
+  Database,
+  ExternalLink,
+  Palette,
+} from "lucide-react";
 import { profile } from "@/data/portfolio";
+import { certificationSections } from "@/data/portfolio/certifications";
 import { assetPath } from "@/lib/assetPath";
 import styles from "./page.module.css";
 
+const sectionIcons = {
+  ai: BrainCircuit,
+  code: Code2,
+  cloud: CloudCog,
+  database: Database,
+  ux: Palette,
+} as const;
+
 export default function LicenciasCertificacionesPage() {
+  const certificationsByTitle = new Map(
+    profile.certifications.map((certification) => [
+      certification.title,
+      certification,
+    ]),
+  );
+
   return (
     <section className={styles.certificationsPage}>
       <div className={styles.pageHeader}>
@@ -13,62 +37,114 @@ export default function LicenciasCertificacionesPage() {
         <h1>Formación continua y validación técnica</h1>
 
         <p>
-          Certificaciones, insignias y rutas de aprendizaje que respaldan mi
-          formación en desarrollo de software, inteligencia artificial, cloud,
-          bases de datos, Python y diseño de experiencia de usuario.
+          Certificaciones, insignias y rutas de aprendizaje organizadas por área
+          de conocimiento. Selecciona una sección para consultar sus
+          credenciales.
         </p>
       </div>
 
-      <div className={styles.certificationsGrid}>
-        {profile.certifications.map((certification) => (
-          <article
-            className={styles.certificationCard}
-            key={`${certification.issuer}-${certification.title}`}>
-            <div className={styles.certificateImage}>
-              <Image
-                src={assetPath(certification.image)}
-                alt={certification.imageAlt}
-                width={1200}
-                height={800}
-                className={styles.certificatePreview}
-              />
-            </div>
+      <div className={styles.sectionsList}>
+        {certificationSections.map((section) => {
+          const Icon = sectionIcons[section.icon];
 
-            <div className={styles.certificateContent}>
-              <div className={styles.certificateMeta}>
-                <span>{certification.type}</span>
-                <strong>{certification.date}</strong>
-              </div>
+          const sectionCertifications = section.certificationTitles.flatMap(
+            (title) => {
+              const certification = certificationsByTitle.get(title);
 
-              <h2>{certification.title}</h2>
+              return certification ? [certification] : [];
+            },
+          );
 
-              <p className={styles.issuer}>
-                Impartido por: <strong>{certification.issuer}</strong>
-              </p>
+          return (
+            <details
+              key={section.id}
+              id={section.id}
+              name="certification-sections"
+              className={styles.certificationSection}>
+              <summary className={styles.sectionSummary}>
+                <span className={styles.sectionIcon}>
+                  <Icon aria-hidden="true" />
+                </span>
 
-              <p className={styles.description}>{certification.description}</p>
+                <span className={styles.sectionInformation}>
+                  <strong>{section.title}</strong>
+                  <span>{section.description}</span>
+                </span>
 
-              <div className="chipList">
-                {certification.skills.map((skill) => (
-                  <span className="chip" key={skill}>
-                    {skill}
+                <span className={styles.sectionCount}>
+                  {sectionCertifications.length}
+                  <span className={styles.sectionCountLabel}>
+                    {sectionCertifications.length === 1
+                      ? "credencial"
+                      : "credenciales"}
                   </span>
-                ))}
-              </div>
+                </span>
 
-              <div className={styles.certificateActions}>
-                <a
-                  href={certification.credentialUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.primaryButton}>
-                  <span>Ver credencial</span>
-                  <ExternalLink size={16} aria-hidden="true" />
-                </a>
+                <ChevronDown
+                  className={styles.sectionChevron}
+                  aria-hidden="true"
+                />
+              </summary>
+
+              <div className={styles.sectionContent}>
+                <div className={styles.certificationsGrid}>
+                  {sectionCertifications.map((certification) => (
+                    <article
+                      className={styles.certificationCard}
+                      key={`${certification.issuer}-${certification.title}`}>
+                      <div className={styles.certificateImage}>
+                        <Image
+                          src={assetPath(certification.image)}
+                          alt={certification.imageAlt}
+                          width={1200}
+                          height={800}
+                          className={styles.certificatePreview}
+                        />
+                      </div>
+
+                      <div className={styles.certificateContent}>
+                        <div className={styles.certificateMeta}>
+                          <span>{certification.type}</span>
+                          <strong>{certification.date}</strong>
+                        </div>
+
+                        <h2>{certification.title}</h2>
+
+                        <p className={styles.issuer}>
+                          Impartido por: <strong>{certification.issuer}</strong>
+                        </p>
+
+                        <p className={styles.description}>
+                          {certification.description}
+                        </p>
+
+                        <div className="chipList">
+                          {certification.skills.map((skill) => (
+                            <span className="chip" key={skill}>
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className={styles.certificateActions}>
+                          <a
+                            href={certification.credentialUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={styles.primaryButton}>
+                            <span>Ver credencial</span>
+
+                            <ExternalLink size={16} aria-hidden="true" />
+                          </a>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </details>
+          );
+        })}
       </div>
 
       <section className={styles.learningSection}>
